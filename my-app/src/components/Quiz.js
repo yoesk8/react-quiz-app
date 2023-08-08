@@ -1,9 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useContext} from 'react'
 import { Questions } from '../helpers/QuestionBank';
+import { QuizContext } from '../helpers/Contexts';
 
 function Quiz() {
+
+  const { score, setScore } = useContext(QuizContext)
   const [currQuestion, setCurrentQuestion] = useState(0);
-  const [optionChosen, setOptionChosen] = useState("")
+  const [optionChosen, setOptionChosen] = useState("");
+  
+  const nextQuestion = () => {
+        if (Questions[currQuestion].answer == optionChosen){
+          setScore(score+1);
+        }
+        alert(score)
+        setCurrentQuestion(currQuestion+1)
+
+  }
   return (
     <div className='Quiz'>
         <h1>{Questions[currQuestion].prompt}</h1>
@@ -14,7 +26,7 @@ function Quiz() {
           <button onClick={()=> setOptionChosen("D")}>{Questions[currQuestion].optionC}</button>
         </div>
 
-        <button>Next Question</button>
+        <button onClick={nextQuestion}>Next Question</button>
     </div>
   )
 }
