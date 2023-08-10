@@ -1,6 +1,7 @@
 import React, {useState, useContext} from 'react'
 import { Questions } from '../helpers/QuestionBank';
 import { QuizContext } from '../helpers/Contexts';
+import "../App.css"
 
 function Quiz() {
 
@@ -35,7 +36,7 @@ function Quiz() {
           <button onClick={()=> setOptionChosen("D")}>{Questions[currQuestion].optionD}</button>
         </div>
 
-        {currQuestion == Questions.length - 1 ? (
+        {currQuestion === Questions.length - 1 ? (
           <button onClick={finishQuiz}>Finish Quiz</button>
         ): (
           <button onClick={nextQuestion}>Next Question</button>
